@@ -51,11 +51,13 @@ nick: One of the following
 sKey: The key name
 sflag: Down or Up
 ```
+*Example: _key("F11", "Down")*
+
 * **_key_press(sKey)**
 ```
 sKey: The key name
 ```
-
+*Example: _key_press("F11")*
 * **_whl(sParam)**
 ```
 sParam: Down or Up
