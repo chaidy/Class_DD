@@ -9,6 +9,6 @@ DD.str("abc")
 DD._key_press("F11")
 
 ; DD._whl("Up")
-; DD._btnEx("RButtonDown")
-; DD._btnEx("RButtonUp")
+; DD._btn("RButtonDown")
+; DD._btn("RButtonUp")
 ; DD.movR(10, 10)
