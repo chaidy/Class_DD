@@ -43,7 +43,6 @@ Some helper methods:
 >	`5ButtonDown`, `5ButtonUp`  
 
 * **_key(sKey, sflag)**
-
 > sKey: The key name  
 > sflag: `Down` or `Up`
 
