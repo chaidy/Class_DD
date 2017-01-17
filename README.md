@@ -43,7 +43,7 @@ Some helper methods:
 > sKey: The key name. e.g. `F11`  
 > sflag: `Down` or `Up`
 
-* **_key_press(sKey)**
+* **_key_press(sKey [, sKey2, sKey3...])**
 > sKey: The key name
 
 * **_whl(sParam)**
@@ -55,4 +55,5 @@ Some helper methods:
 
 DD.str("abc")
 DD._key_press("F11")
+DD._key_press("LWin", "R")
 ```
