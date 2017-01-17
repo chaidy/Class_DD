@@ -56,4 +56,5 @@ Some helper methods:
 DD.str("abc")
 DD._key_press("F11")
 DD._key_press("LWin", "R")
+DD._key_press("Ctrl", "Alt", "S")
 ```
