@@ -57,7 +57,6 @@ sflag: Down or Up
 ```
 sKey: The key name
 ```
-*Example: _key_press("F11")*
 * **_whl(sParam)**
 ```
 sParam: Down or Up
