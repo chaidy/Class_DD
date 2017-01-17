@@ -1,9 +1,5 @@
 ﻿#Include, class_DD.ahk
-#NoEnv
-#SingleInstance Force
 SetWorkingDir %A_ScriptDir%
-
-
 
 DD.str("abc")
 DD._key_press("F11")
