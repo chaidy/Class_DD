@@ -1,4 +1,6 @@
-﻿class DD extends DD_Helper
+; v1.00 (2017-1-18)
+
+class DD extends DD_Helper
 {
 	; Simulate mouse button press
 	; param:   1 = LButton Down,    2 = LButton Up
