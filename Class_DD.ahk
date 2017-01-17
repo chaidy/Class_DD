@@ -79,14 +79,14 @@ class DD_Helper
 	}
 	
 	; Example: _btn("RButtonDown")
-	_btn(nick) {
+	_btn(sNick) {
 		static oNick := { LButtonDown: 1, LButtonUp: 2
 		                , RButtonDown: 4, RButtonUp: 8
 		                , MButtonDown: 16, MButtonUp: 32
 		                , 4ButtonDown: 64, 4ButtonUp: 128
 		                , 5ButtonDown: 256, 5ButtonUp: 512 }
-		if !( n := oNick[nick] ) {
-			throw, nick " is not a valid nick."
+		if !( n := oNick[sNick] ) {
+			throw, sNick " is not a valid nick."
 		}
 		this.btn(n)
 	}
