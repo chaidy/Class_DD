@@ -1,0 +1,111 @@
+﻿class DD extends DD_Helper
+{
+	; Simulate mouse button press
+	; param:   1 = LButton Down,    2 = LButton Up
+	;          4 = RButton Down,    8 = RButton Up
+	;         16 = MButton Down,   32 = MButton Up
+	;         64 = Button 4 Down, 128 = Button 4 Up
+	;        256 = Button 5 Down, 512 = Button 5 Up
+	btn(param) {
+		DllCall(this.dllFile "\DD_btn", "int", param)
+	}
+
+	; Simulate mouse move
+	mov(x, y) {
+		DllCall(this.dllFile "\DD_mov", "int", x, "int", y)
+	}
+
+	; Simulate mouse move (relatively)
+	movR(dx, dy) {
+		DllCall(this.dllFile "\DD_movR", "int", dx, "int", dy)
+	}
+
+	; Simulate mouse wheel
+	; param: 1=upward 2=downward
+	whl(param) {
+		DllCall(this.dllFile "\DD_whl", "int", param)
+	}
+
+	; Simulate keyboard
+	; param1: DD code
+	; param2: 1=Down 2=Up
+	key(param1, param2) {
+		DllCall(this.dllFile "\DD_key", "int", param1, "int", param2)
+	}
+
+	; VKCode to DD code
+	todc(VKCode) {
+		return DllCall(this.dllFile "\DD_todc", "int", VKCode)
+	}
+
+	; Send string
+	str(string) {
+		return DllCall(this.dllFile "\DD_str", "astr", string)
+	}
+}
+
+class DD_Helper
+{
+	static _ := DD_Helper.InitClass()
+
+	InitClass() {
+		if !A_IsAdmin {
+			Run *RunAs "%A_ScriptFullPath%"  ; Requires v1.0.92.01+
+			ExitApp
+		}
+		this.LoadDll()
+	}
+
+	LoadDll() {
+		if A_Is64bitOS {
+			dllFile := (A_PtrSize=8) ? "DD\64\ddx64.64.dll" : "DD\64\ddx64.32.dll"
+		} else {
+			dllFile := "DD\32\ddx32.dll"
+		}
+
+		if !this.hModule := DllCall("LoadLibrary", "Str", dllFile, "Ptr") {
+			if !FileExist(dllFile) {
+				throw, dllFile " not found."
+			}
+			throw, "LoadLibrary failed. DllFile is " dllFile
+		}
+		this.dllFile := dllFile
+	}
+
+	UnloadDll() {
+		DllCall("FreeLibrary", "Ptr", this.hModule)
+	}
+	
+	; Example: _btn("RButtonDown")
+	_btn(nick) {
+		static oNick := { LButtonDown: 1, LButtonUp: 2
+		                , RButtonDown: 4, RButtonUp: 8
+		                , MButtonDown: 16, MButtonUp: 32
+		                , 4ButtonDown: 64, 4ButtonUp: 128
+		                , 5ButtonDown: 256, 5ButtonUp: 512 }
+		if !( n := oNick[nick] ) {
+			throw, nick " is not a valid nick."
+		}
+		this.btn(n)
+	}
+
+	; Example: _key("F11", "Down")
+	;          _key("F11", "Up")
+	_key(sKey, sflag) {
+		ddCode := this.todc( GetKeyVK(sKey) )
+		this.key(ddCode, (sflag="Up") ? 2 : 1 )
+	}
+
+	; Example: _key_press("F11")
+	_key_press(sKey) {
+		ddCode := this.todc( GetKeyVK(sKey) )
+		this.key(ddCode, 1) ; Down
+		this.key(ddCode, 2) ; Up
+	}
+
+	; Example: _whl("down")
+	;          _whl("up")
+	_whl(sParam) {
+		this.whl( (sParam="Up") ? 1 : 2 )
+	}
+}
