@@ -1,4 +1,3 @@
-# Class_DD
 [DD](http://www.ddxoft.com/) is a virtual keyboard/mouse library, used to simulate keys/mouse in hardware driver level.
 
 ## Limitation
