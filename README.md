@@ -47,10 +47,10 @@ sNick: One of the following
 ```
 
 * **_key(sKey, sflag)**
-```
-sKey: The key name
-sflag: Down or Up
-```
+
+> sKey: The key name  
+> sflag: `Down` or `Up`
+
 *Example: _key("F11", "Down")*
 
 * **_key_press(sKey)**
