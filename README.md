@@ -8,7 +8,6 @@ The author of DD provides a paid service for removing the network requirement, y
 ## Methods
 
 * **btn(param)** - Simulate mouse button press
-
 > param:   
 > `1` = LButton Down,    `2` = LButton Up  
 > `4` = RButton Down,    `8` = RButton Up  
@@ -22,7 +21,6 @@ The author of DD provides a paid service for removing the network requirement, y
 
 * **whl(param)** - Simulate mouse wheel
 > param: `1`=upward `2`=downward
-
 
 * **key(param1, param2)** - Simulate keyboard
 > param1: DD code      
