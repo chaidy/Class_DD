@@ -41,10 +41,8 @@ Some helper methods:
 >	`5ButtonDown`, `5ButtonUp`  
 
 * **_key(sKey, sflag)**
-> sKey: The key name  
+> sKey: The key name. e.g. `F11`  
 > sflag: `Down` or `Up`
-
-*Example: _key("F11", "Down")*
 
 * **_key_press(sKey)**
 > sKey: The key name
