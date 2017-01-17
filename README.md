@@ -49,7 +49,7 @@ Some helper methods:
 * **_whl(sParam)**
 > sParam: `Down` or `Up`
 
-## Usage Example
+## Example
 ```AutoHotkey
 #Include, class_DD.ahk
 
