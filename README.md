@@ -36,9 +36,9 @@ param2: 1=Down 2=Up
 
 ----
 Some helper methods:
-* **_btn(nick)**
+* **_btn(sNick)**
 ```
-nick: One of the following
+sNick: One of the following
 	LButtonDown, LButtonUp
 	RButtonDown, RButtonUp
 	MButtonDown, MButtonUp
