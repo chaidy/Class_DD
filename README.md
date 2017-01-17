@@ -3,7 +3,7 @@
 
 ## Limitation
 A network connection is required when loading the DD library (dll file), but once loaded the computer can go offline.
-The author of DD provides a paid service for removing the network requirement, you can mail him at [this](mailto:2827362732@qq.com) address
+The author of DD provides a paid service for removing the network requirement, you can mail him at [this](mailto:2827362732@qq.com) address.
 
 ## Methods
 
