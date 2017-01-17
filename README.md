@@ -35,7 +35,7 @@ param2: 1=Down 2=Up
 * **str(string)** - Send string
 
 ----
-Some helper methods
+Some helper methods:
 * **_btn(nick)**
 ```
 nick: One of the following
