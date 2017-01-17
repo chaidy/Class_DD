@@ -29,7 +29,7 @@ The author of DD provides a paid service for removing the network requirement, y
 
 * **str(string)** - Send string
 
-----
+--
 Some helper methods:
 * **_btn(sNick)**
 > sNick: One of the following    
