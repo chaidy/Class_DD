@@ -1,3 +1,4 @@
+; v1.10 (2017-1-18) - Allow _key_press() to send Key combinations
 ; v1.00 (2017-1-18)
 
 class DD extends DD_Helper
@@ -99,10 +100,17 @@ class DD_Helper
 	}
 
 	; Example: _key_press("F11")
-	_key_press(sKey) {
-		ddCode := this.todc( GetKeyVK(sKey) )
-		this.key(ddCode, 1) ; Down
-		this.key(ddCode, 2) ; Up
+	;          _key_press("Ctrl", "A")
+	_key_press(sKey*) {
+		arr_ddCode := []
+
+		for i, k in sKey {
+			arr_ddCode[i] := this.todc( GetKeyVK(k) )
+			this.key(arr_ddCode[i], 1) ; Down
+		}
+		for i, ddCode in arr_ddCode {
+			this.key(ddCode, 2) ; Up
+		}
 	}
 
 	; Example: _whl("down")
