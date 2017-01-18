@@ -1,3 +1,4 @@
+; v1.20 (2017-1-18) - Added 4 methods: GetActiveWindow/MouseMove/SnapPic/PickColor
 ; v1.10 (2017-1-18) - Allow _key_press() to send Key combinations
 ; v1.00 (2017-1-18)
 
@@ -10,30 +11,30 @@ class DD extends DD_Helper
 	;         64 = Button 4 Down, 128 = Button 4 Up
 	;        256 = Button 5 Down, 512 = Button 5 Up
 	btn(param) {
-		DllCall(this.dllFile "\DD_btn", "int", param)
+		return DllCall(this.dllFile "\DD_btn", "int", param)
 	}
 
 	; Simulate mouse move
 	mov(x, y) {
-		DllCall(this.dllFile "\DD_mov", "int", x, "int", y)
+		return DllCall(this.dllFile "\DD_mov", "int", x, "int", y)
 	}
 
 	; Simulate mouse move (relatively)
 	movR(dx, dy) {
-		DllCall(this.dllFile "\DD_movR", "int", dx, "int", dy)
+		return DllCall(this.dllFile "\DD_movR", "int", dx, "int", dy)
 	}
 
 	; Simulate mouse wheel
 	; param: 1=upward 2=downward
 	whl(param) {
-		DllCall(this.dllFile "\DD_whl", "int", param)
+		return DllCall(this.dllFile "\DD_whl", "int", param)
 	}
 
 	; Simulate keyboard
 	; param1: DD code
 	; param2: 1=Down 2=Up
 	key(param1, param2) {
-		DllCall(this.dllFile "\DD_key", "int", param1, "int", param2)
+		return DllCall(this.dllFile "\DD_key", "int", param1, "int", param2)
 	}
 
 	; VKCode to DD code
@@ -43,7 +44,26 @@ class DD extends DD_Helper
 
 	; Send string
 	str(string) {
-		DllCall(this.dllFile "\DD_str", "astr", string)
+		return DllCall(this.dllFile "\DD_str", "astr", string)
+	}
+
+	; Get hwnd of active window
+	GetActiveWindow() {
+		; return DllCall(this.dllFile "\DD_GetActiveWindow", "ptr") ; seems not working
+		return WinExist("A")
+	}
+
+	MouseMove(hwnd, x, y) {
+		return DllCall(this.dllFile "\DD_MouseMove", "ptr", hwnd, "int", x, "int", y)
+	}
+
+	; The picture is saved to "C:\DD Snap\" folder
+	SnapPic(hwnd, x, y, w, h) {
+		return DllCall(this.dllFile "\DD_SnapPic", "ptr", hwnd, "int", x, "int", y, "int", w, "int", h)
+	}
+
+	PickColor(hwnd, x, y, mode=2) {
+		return DllCall(this.dllFile "\DD_PickColor", "ptr", hwnd, "int", x, "int", y, "int", mode)
 	}
 }
 
