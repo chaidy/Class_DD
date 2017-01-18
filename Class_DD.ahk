@@ -43,7 +43,7 @@ class DD extends DD_Helper
 
 	; Send string
 	str(string) {
-		return DllCall(this.dllFile "\DD_str", "astr", string)
+		DllCall(this.dllFile "\DD_str", "astr", string)
 	}
 }
 
