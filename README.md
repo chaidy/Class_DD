@@ -29,6 +29,12 @@ The author of DD provides a paid service for removing the network requirement, y
 
 * **str(string)** - Send string
 
+* **MouseMove(hwnd, x, y)**
+
+* **SnapPic(hwnd, x, y, w, h)** - Screenshot to "C:\DD Snap\" folder
+
+* **PickColor(hwnd, x, y, mode=2)**
+
 --
 Some helper methods:
 * **_btn(sNick)**
