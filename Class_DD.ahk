@@ -1,3 +1,4 @@
+; v1.30 (2017-3-11) - Added _btn_press()
 ; v1.20 (2017-1-18) - Added 4 methods: GetActiveWindow/MouseMove/SnapPic/PickColor
 ; v1.10 (2017-1-18) - Allow _key_press() to send Key combinations
 ; v1.00 (2017-1-18)
@@ -110,6 +111,20 @@ class DD_Helper
 			throw, sNick " is not a valid nick."
 		}
 		this.btn(n)
+	}
+
+	; Example: _btn_press("RButton")
+	_btn_press(sNick) {
+		static oNick := { LButton: {Down: 1, Up: 2}
+		                , RButton: {Down: 4, Up: 8}
+		                , MButton: {Down: 16, Up: 32}
+		                , 4Button: {Down: 64, Up: 128}
+		                , 5Button: {Down: 256, Up: 512} }
+		if !( o := oNick[sNick] ) {
+			throw, sNick " is not a valid nick."
+		}
+		this.btn( o.Down )
+		this.btn( o.Up )
 	}
 
 	; Example: _key("F11", "Down")
