@@ -1,3 +1,4 @@
+; v1.32 (2017-3-12) - Added nCount prameter to _btn_press()
 ; v1.31 (2017-3-11) - Added _key_pressEx(); Added x, y paramaters to _btn() and _btn_press()
 ; v1.30 (2017-3-11) - Added _btn_press()
 ; v1.20 (2017-1-18) - Added 4 methods: GetActiveWindow/MouseMove/SnapPic/PickColor
@@ -118,7 +119,7 @@ class DD_Helper
 	}
 
 	; Example: _btn_press("RButton")
-	_btn_press(sNick, x:="", y:="") {
+	_btn_press(sNick, x:="", y:="", nCount:=1) {
 		static oNick := { LButton: {Down: 1, Up: 2}
 		                , RButton: {Down: 4, Up: 8}
 		                , MButton: {Down: 16, Up: 32}
@@ -130,8 +131,11 @@ class DD_Helper
 		if (x != "") {
 			this.mov(x, y)
 		}
-		this.btn( o.Down )
-		this.btn( o.Up )
+		Loop, % nCount {
+			this.btn( o.Down )
+			this.btn( o.Up )
+			Sleep, 5
+		}
 	}
 
 	; Example: _key("F11", "Down")
