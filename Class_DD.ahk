@@ -1,3 +1,4 @@
+; v1.31 (2017-3-11) - Added _key_pressEx(); Added x, y paramaters to _btn() and _btn_press()
 ; v1.30 (2017-3-11) - Added _btn_press()
 ; v1.20 (2017-1-18) - Added 4 methods: GetActiveWindow/MouseMove/SnapPic/PickColor
 ; v1.10 (2017-1-18) - Allow _key_press() to send Key combinations
@@ -101,7 +102,7 @@ class DD_Helper
 	}
 	
 	; Example: _btn("RButtonDown")
-	_btn(sNick) {
+	_btn(sNick, x:="", y:="") {
 		static oNick := { LButtonDown: 1, LButtonUp: 2
 		                , RButtonDown: 4, RButtonUp: 8
 		                , MButtonDown: 16, MButtonUp: 32
@@ -110,11 +111,14 @@ class DD_Helper
 		if !( n := oNick[sNick] ) {
 			throw, sNick " is not a valid nick."
 		}
+		if (x != "") {
+			this.mov(x, y)
+		}
 		this.btn(n)
 	}
 
 	; Example: _btn_press("RButton")
-	_btn_press(sNick) {
+	_btn_press(sNick, x:="", y:="") {
 		static oNick := { LButton: {Down: 1, Up: 2}
 		                , RButton: {Down: 4, Up: 8}
 		                , MButton: {Down: 16, Up: 32}
@@ -122,6 +126,9 @@ class DD_Helper
 		                , 5Button: {Down: 256, Up: 512} }
 		if !( o := oNick[sNick] ) {
 			throw, sNick " is not a valid nick."
+		}
+		if (x != "") {
+			this.mov(x, y)
 		}
 		this.btn( o.Down )
 		this.btn( o.Up )
@@ -144,6 +151,15 @@ class DD_Helper
 			this.key(arr_ddCode[i], 1) ; Down
 		}
 		for i, ddCode in arr_ddCode {
+			this.key(ddCode, 2) ; Up
+		}
+	}
+
+	_key_pressEx(sKey, nCount := 1) {
+		ddCode := this.todc( GetKeyVK(sKey) )
+
+		Loop, % nCount {
+			this.key(ddCode, 1) ; Down
 			this.key(ddCode, 2) ; Up
 		}
 	}
